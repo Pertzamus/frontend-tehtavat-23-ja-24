@@ -61,7 +61,7 @@ function App() {
         label="Description" variant="standard" name="desc" value={todo.desc} onChange={inputChanged}/>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <DatePicker
-        label="Date" variant="standard" name="date" value={selectedDate} format='dd-MM-yyyy' onChange={handleDateChange}/>
+        label="Date" variant="standard" name="date" value={selectedDate} format='dd.MM.yyyy' onChange={handleDateChange}/>
         </MuiPickersUtilsProvider>
         <TextField
         label="Priority" variant="standard" name="priority" value={todo.priority} onChange={inputChanged}/>
