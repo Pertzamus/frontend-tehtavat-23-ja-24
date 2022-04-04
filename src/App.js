@@ -1,6 +1,7 @@
 import React, { useState, useRef }  from 'react'
 import { AgGridReact } from 'ag-grid-react';
 import Button from'@mui/material/Button';
+import {Delete} from '@mui/icons-material'
 import TextField from'@mui/material/TextField';
 import Stack from'@mui/material/Stack';
 import Tabs from'@mui/material/Tabs';
@@ -17,7 +18,7 @@ import {
 
 
 function App() {
-  const [todo, setTodo] = useState({desc: '', date: '', priority: ''});
+  const [todo, setTodo] = useState({desc: '',  priority: ''});
   const [todos, setTodos] = useState([]);
   const [value, setValue] = useState('one');
   const gridRef = useRef();
@@ -27,8 +28,8 @@ function App() {
 
   const addTodo = (event) => {
     setTodos([...todos, todo]);
-    todo.date=selectedDate;
-    setTodo({desc: '', date: '', priority: ''});
+    todo.date=selectedDate.toLocaleDateString();
+    setTodo({desc: '',  priority: ''});
   }
 
   const deleteTodo = () => {  
@@ -60,13 +61,13 @@ function App() {
         label="Description" variant="standard" name="desc" value={todo.desc} onChange={inputChanged}/>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <DatePicker
-        label="Date" variant="standard" name="date" value={selectedDate} format='yyyy-MM-dd' onChange={handleDateChange}/>
+        label="Date" variant="standard" name="date" value={selectedDate} format='dd-MM-yyyy' onChange={handleDateChange}/>
         </MuiPickersUtilsProvider>
         <TextField
         label="Priority" variant="standard" name="priority" value={todo.priority} onChange={inputChanged}/>
 
-          <Button onClick={addTodo} variant="contained" >Add</Button>
-          <Button onClick={deleteTodo} variant="contained" >Delete</Button>
+          <Button onClick={addTodo} variant="outlined" >Add</Button>
+          <Button onClick={deleteTodo} variant="outlined" color="error" startIcon={<Delete/>} >Delete</Button>
       </Stack>
 
   <div className="ag-theme-material" style={{height: 400, width: 600, margin: 'auto'}}>
